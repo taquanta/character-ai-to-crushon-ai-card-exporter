@@ -1,6 +1,6 @@
 # Privacy Policy — Character Card Exporter for CrushOn
 
-_Last updated: 2026-05-15_
+_Last updated: 2026-05-18_
 
 This Chrome extension ("the Extension") helps you export your own characters from Character.AI as portable Tavern character card files (JSON or PNG). This document describes exactly what data the Extension touches and what it does with it.
 
@@ -38,8 +38,6 @@ When you visit one of those pages, the Extension reads:
 
 | Permission | Why it's required |
 |---|---|
-| `activeTab` | To inject the export buttons into the Character.AI page you are currently viewing. |
-| `scripting` | To run the export logic (data extraction + file building) in the page context. |
 | `host_permissions` for Character.AI domains | To read character data from Character.AI's API and fetch avatar images for embedding in PNG cards. |
 
 ## 5. Third parties
