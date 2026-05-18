@@ -1,0 +1,6 @@
+dist/
+screenshots/raw/
+icons/icon_master_1024.png
+.DS_Store
+*.pyc
+__pycache__/

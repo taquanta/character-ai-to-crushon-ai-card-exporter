@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      width: 340px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      padding: 16px;
+      margin: 0;
+      color: #1f1729;
+      background: #fff;
+    }
+    h2 { font-size: 15px; margin: 0 0 4px 0; }
+    .sub { font-size: 12px; color: #777; margin-bottom: 14px; line-height: 1.5; }
+    .badge { display: inline-block; padding: 2px 8px; background: #fce7f3; color: #ec4899; border-radius: 4px; font-size: 11px; font-weight: 600; margin-left: 4px; }
+    h3 { font-size: 13px; margin: 14px 0 6px; }
+    .opt {
+      padding: 10px 12px;
+      background: #faf5ff;
+      border: 1px solid #f3e8ff;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+    .opt b { color: #ec4899; }
+    .opt .which { font-weight: 600; margin-bottom: 4px; }
+    .opt .desc { color: #555; }
+    .footer { font-size: 11px; color: #999; margin-top: 12px; line-height: 1.5; }
+    code { background: #f0e9f7; padding: 1px 4px; border-radius: 3px; font-size: 11.5px; }
+    a { color: #a855f7; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h2>Character.AI → CrushOn.AI <span class="badge">v0.1.0</span></h2>
+  <div class="sub">Export your <b>Character.AI</b> bots as Tavern character cards. One-click import to <b>CrushOn.AI</b> (and any Tavern-compatible platform).</div>
+
+  <h3>How to use</h3>
+  <div class="opt">
+    <div class="which">1. Open a character page on character.ai</div>
+    <div class="desc">Either <code>/chat/&lt;id&gt;</code> or <code>/character/...</code></div>
+  </div>
+  <div class="opt">
+    <div class="which">2. Two pink/purple buttons appear top-right</div>
+  </div>
+
+  <h3>Two export formats</h3>
+  <div class="opt">
+    <div class="which">📥 <b>Export JSON</b></div>
+    <div class="desc">Downloads <code>&lt;name&gt;.json</code> — Tavern V1 flat schema. Upload to CrushOn "import existing character".</div>
+  </div>
+  <div class="opt">
+    <div class="which">🎴 <b>Export PNG Card</b></div>
+    <div class="desc">Downloads <code>&lt;name&gt;.png</code> — avatar image with embedded character data (<code>tEXt</code>/<code>chara</code> chunk). Compatible with CrushOn.AI, SillyTavern, RisuAI, Chub.ai.</div>
+  </div>
+
+  <div class="footer">
+    Export characters you created, or characters where the creator set Definition Visibility = Public.<br><br>
+    <a href="https://crushon.ai/character/create" target="_blank">Open CrushOn create-character page →</a>
+  </div>
+</body>
+</html>

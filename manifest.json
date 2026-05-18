@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "Character.AI to CrushOn.AI Card Exporter",
+  "version": "0.1.0",
+  "description": "Export Character.AI bots as Tavern JSON/PNG character cards. One-click import to CrushOn.AI, SillyTavern, RisuAI, Chub.ai.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://character.ai/*",
+    "https://plus.character.ai/*",
+    "https://beta.character.ai/*",
+    "https://neo.character.ai/*",
+    "https://characterai.io/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Character.AI to CrushOn.AI Card Exporter",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://character.ai/*",
+        "https://beta.character.ai/*"
+      ],
+      "js": ["intercept.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://character.ai/*",
+        "https://beta.character.ai/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

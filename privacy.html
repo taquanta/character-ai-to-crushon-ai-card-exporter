@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — Character Importer</title>
+  <meta name="description" content="Privacy policy for the Character Importer Chrome extension." />
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #666;
+      --accent: #5b21b6;
+      --border: #e5e5e5;
+      --code-bg: #f4f4f5;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.65;
+      font-size: 16px;
+    }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+    h1 {
+      font-size: 28px;
+      margin: 0 0 6px;
+      letter-spacing: -0.01em;
+    }
+    .sub {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    h2 {
+      font-size: 18px;
+      margin: 36px 0 10px;
+      letter-spacing: -0.01em;
+    }
+    h2:first-of-type { margin-top: 0; }
+    p, li { font-size: 15px; }
+    ul { padding-left: 22px; }
+    a { color: var(--accent); text-decoration: underline; }
+    a:hover { text-decoration: none; }
+    code {
+      background: var(--code-bg);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 13.5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 12px 0 16px;
+      font-size: 14px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { font-weight: 600; }
+    footer {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 48px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+    @media (max-width: 640px) {
+      main { padding: 36px 18px 56px; }
+      h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Privacy Policy</h1>
+    <div class="sub">Character Importer — a Chrome extension that exports Character.AI characters as portable Tavern card files.</div>
+    <div class="meta">Last updated: 2026-05-15</div>
+
+    <h2>1. What the extension reads</h2>
+    <p>The extension runs only on these domains:</p>
+    <ul>
+      <li><code>character.ai</code></li>
+      <li><code>beta.character.ai</code></li>
+      <li><code>plus.character.ai</code></li>
+      <li><code>neo.character.ai</code></li>
+      <li><code>characterai.io</code></li>
+    </ul>
+    <p>When you visit one of those pages, the extension reads:</p>
+    <ul>
+      <li><strong>The page URL</strong>, to detect which character you are viewing.</li>
+      <li><strong>The <code>Authorization: Token &hellip;</code> HTTP header</strong> that Character.AI&rsquo;s own client attaches to its API requests. The extension captures this from within your active browser session and replays it on subsequent requests to Character.AI&rsquo;s API. This is the same authentication mechanism Character.AI&rsquo;s website uses; the token is not generated, decoded, or transmitted anywhere else.</li>
+      <li><strong>Character data returned by Character.AI&rsquo;s API</strong> — character name, tagline, description, greeting, definition (if creator has made it public), and avatar URL.</li>
+      <li><strong>Avatar image bytes</strong>, fetched from <code>characterai.io</code>, to embed in the PNG character card.</li>
+    </ul>
+
+    <h2>2. What the extension does not do</h2>
+    <ul>
+      <li>It does not transmit any of your data to any server. There is no backend, no analytics endpoint, no telemetry, no error reporting service.</li>
+      <li>It does not read your Character.AI password or cookies.</li>
+      <li>It does not read data from any website other than the Character.AI domains listed above.</li>
+      <li>It does not modify Character.AI&rsquo;s content or send messages on your behalf.</li>
+      <li>It does not persist the captured <code>Authorization</code> token across page reloads — the token lives only in a <code>&lt;meta&gt;</code> tag on the current page and is discarded when you close or navigate away.</li>
+    </ul>
+
+    <h2>3. Where exported data goes</h2>
+    <ul>
+      <li>Exported <code>.json</code> and <code>.png</code> files are saved to your local Downloads folder via the browser&rsquo;s standard download mechanism. No copies are sent elsewhere.</li>
+      <li>It is your responsibility to handle these files appropriately — they may contain character definitions written by you or, if the creator chose to make them public, by other Character.AI users.</li>
+      <li>When you subsequently upload a file to a third-party platform such as CrushOn.AI, SillyTavern, RisuAI, or Chub.ai, that platform&rsquo;s privacy policy governs how it handles the file. The extension is not involved in that upload step.</li>
+    </ul>
+
+    <h2>4. Permissions justification</h2>
+    <table>
+      <thead><tr><th>Permission</th><th>Why it is required</th></tr></thead>
+      <tbody>
+        <tr><td><code>activeTab</code></td><td>To inject the export buttons into the Character.AI page you are viewing.</td></tr>
+        <tr><td><code>scripting</code></td><td>To run the export logic (data extraction and file building) in the page context.</td></tr>
+        <tr><td><code>host_permissions</code> for Character.AI domains</td><td>To read character data from Character.AI&rsquo;s API and fetch avatar images for embedding in PNG cards.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>5. Third parties</h2>
+    <p>The extension communicates only with Character.AI servers (the domains listed in §1). It does not communicate with any other third party from within the browser session.</p>
+
+    <h2>6. Children</h2>
+    <p>The extension is not directed at children under 13. Character.AI&rsquo;s own terms restrict use accordingly.</p>
+
+    <h2>7. Changes to this policy</h2>
+    <p>If the extension changes what data it reads or where it sends data, this document will be updated and a new &ldquo;Last updated&rdquo; date set. Material changes will be noted in the Chrome Web Store listing changelog.</p>
+
+    <h2>8. Contact</h2>
+    <p>For questions about this policy or the extension&rsquo;s behavior, open an issue on the project&rsquo;s source repository (linked from the Chrome Web Store listing).</p>
+  </main>
+
+  <footer>
+    Open-source project. Source code and issues on GitHub (see the Chrome Web Store listing for the repository link).
+  </footer>
+</body>
+</html>
