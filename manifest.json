@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Character.AI to CrushOn.AI Card Exporter",
   "version": "0.1.0",
-  "description": "Export Character.AI bots as Tavern V1 JSON/PNG character cards. One-click import to any chat platform that accepts the Tavern format.",
+  "description": "Export Character.AI bots as Tavern JSON/PNG character cards. One-click import to any chat platform that accepts the Tavern format.",
   "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",
