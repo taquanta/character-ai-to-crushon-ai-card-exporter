@@ -35,10 +35,14 @@ async function isAnalyticsEnabled() {
 
 async function sendGA(eventName, params = {}) {
   try {
-    if (!(await isAnalyticsEnabled())) return;
+    if (!(await isAnalyticsEnabled())) {
+      console.log('[GA] skipped (opted out):', eventName);
+      return;
+    }
     const clientId = await getClientId();
     const version = chrome.runtime.getManifest().version;
-    await fetch(GA_ENDPOINT, {
+    console.log('[GA] sending:', eventName, { client_id: clientId.slice(0, 8) + '…', ...params });
+    const res = await fetch(GA_ENDPOINT, {
       method: 'POST',
       body: JSON.stringify({
         client_id: clientId,
@@ -48,7 +52,9 @@ async function sendGA(eventName, params = {}) {
         }],
       }),
     });
-  } catch (_e) {
+    console.log('[GA] response:', eventName, 'status', res.status, res.statusText);
+  } catch (e) {
+    console.error('[GA] error:', eventName, e);
     // Analytics must never break the extension; swallow every error.
   }
 }
