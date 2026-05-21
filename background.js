@@ -13,6 +13,11 @@ const GA_MEASUREMENT_ID = 'G-5PK616YD29';
 const GA_API_SECRET = 'vBwtEN5cTlaI-5aW9i5DQg';
 const GA_ENDPOINT = `https://www.google-analytics.com/mp/collect?measurement_id=${GA_MEASUREMENT_ID}&api_secret=${GA_API_SECRET}`;
 
+// One session_id per service-worker lifetime. GA4 needs this (together with
+// engagement_time_msec on each event) to count the user as "active" — without
+// it, events arrive but the "active users" metric stays at 0.
+const GA_SESSION_ID = String(Date.now());
+
 // ---------- client_id (random UUID, persisted in chrome.storage.local) ------
 
 async function getClientId() {
@@ -44,7 +49,12 @@ async function sendGA(eventName, params = {}) {
         client_id: clientId,
         events: [{
           name: eventName,
-          params: { version, ...params },
+          params: {
+            version,
+            session_id: GA_SESSION_ID,
+            engagement_time_msec: 100,
+            ...params,
+          },
         }],
       }),
     });
