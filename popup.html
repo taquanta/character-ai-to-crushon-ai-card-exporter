@@ -31,10 +31,35 @@
     code { background: #f0e9f7; padding: 1px 4px; border-radius: 3px; font-size: 11.5px; }
     a { color: #a855f7; text-decoration: none; }
     a:hover { text-decoration: underline; }
+    .privacy-toggle {
+      margin-top: 14px;
+      padding: 10px 12px;
+      background: #faf5ff;
+      border: 1px solid #f3e8ff;
+      border-radius: 8px;
+      font-size: 11.5px;
+      color: #555;
+      line-height: 1.5;
+    }
+    .privacy-toggle label {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .privacy-toggle input[type="checkbox"] {
+      margin: 2px 0 0 0;
+      accent-color: #a855f7;
+      cursor: pointer;
+    }
+    .privacy-toggle .desc {
+      flex: 1;
+    }
+    .privacy-toggle .desc b { color: #1f1729; font-weight: 600; }
   </style>
 </head>
 <body>
-  <h2>Character.AI → CrushOn.AI <span class="badge">v0.1.0</span></h2>
+  <h2>Character.AI → CrushOn.AI <span class="badge">v0.1.1</span></h2>
   <div class="sub">Export your <b>Character.AI</b> bots as Tavern character cards. One-click import to <b>CrushOn.AI</b> (and any Tavern-compatible platform).</div>
 
   <h3>How to use</h3>
@@ -60,5 +85,17 @@
     Export characters you created, or characters where the creator set Definition Visibility = Public.<br><br>
     <a href="https://crushon.ai/character/create" target="_blank">Open CrushOn create-character page →</a>
   </div>
+
+  <div class="privacy-toggle">
+    <label>
+      <input type="checkbox" id="analytics-toggle" checked />
+      <span class="desc">
+        <b>Help improve this extension</b><br>
+        Share anonymous usage data (which buttons you click, no character content or personal info). See the <a href="https://taquanta.github.io/character-ai-to-crushon-ai-card-exporter/privacy.html#analytics-and-usage-telemetry" target="_blank">privacy policy</a> for details.
+      </span>
+    </label>
+  </div>
+
+  <script src="popup.js"></script>
 </body>
 </html>

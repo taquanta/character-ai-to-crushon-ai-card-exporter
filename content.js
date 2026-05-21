@@ -841,14 +841,28 @@
     return false;
   }
 
+  // Best-effort fire-and-forget analytics. Never throws into export flow.
+  function gaEvent(name, params) {
+    try {
+      const p = chrome.runtime.sendMessage({ type: 'ga-event', name, params: params || {} });
+      if (p && typeof p.catch === 'function') p.catch(() => {});
+    } catch (_) { /* extension context invalidated; ignore */ }
+  }
+
   async function doExportJson(btn) {
     const orig = btn.textContent;
     btn.disabled = true; btn.style.opacity = '0.6'; btn.textContent = 'Exporting…';
     try {
       const r = await getCard();
-      if (!r) return;
+      if (!r) {
+        gaEvent('export_failed', { format: 'json', reason: 'fetch_failed' });
+        return;
+      }
       const { card, source } = r;
-      if (blockIfEmpty(card, source)) return;
+      if (blockIfEmpty(card, source)) {
+        gaEvent('export_failed', { format: 'json', reason: 'extraction_error', source });
+        return;
+      }
       const json = JSON.stringify(card, null, '\t');
       const blob = new Blob([json], { type: 'application/json' });
       downloadBlob(blob, `${safeFilename(card.name)}.json`);
@@ -858,9 +872,11 @@
         `${partial ? '⚠️' : '✅'} JSON downloaded (${source}). ${s}`,
         partial ? 'err' : 'ok'
       );
+      gaEvent('export_json', { source, partial: partial ? 'true' : 'false' });
     } catch (e) {
       console.error('[CrushOn Importer] json export error:', e);
       toast('JSON export failed. See console.', 'err');
+      gaEvent('export_failed', { format: 'json', reason: 'unknown' });
     } finally {
       btn.disabled = false; btn.style.opacity = '1'; btn.textContent = orig;
     }
@@ -871,9 +887,15 @@
     btn.disabled = true; btn.style.opacity = '0.6'; btn.textContent = 'Building PNG…';
     try {
       const r = await getCard();
-      if (!r) return;
+      if (!r) {
+        gaEvent('export_failed', { format: 'png', reason: 'fetch_failed' });
+        return;
+      }
       const { card, avatarUrl, source } = r;
-      if (blockIfEmpty(card, source)) return;
+      if (blockIfEmpty(card, source)) {
+        gaEvent('export_failed', { format: 'png', reason: 'extraction_error', source });
+        return;
+      }
       const pngBytes = await buildCharacterPng(card, avatarUrl);
       const blob = new Blob([pngBytes], { type: 'image/png' });
       downloadBlob(blob, `${safeFilename(card.name)}.png`);
@@ -883,9 +905,11 @@
         `${partial ? '⚠️' : '✅'} PNG downloaded (${source}). ${s}`,
         partial ? 'err' : 'ok'
       );
+      gaEvent('export_png', { source, partial: partial ? 'true' : 'false' });
     } catch (e) {
       console.error('[CrushOn Importer] png export error:', e);
       toast('PNG export failed. See console.', 'err');
+      gaEvent('export_failed', { format: 'png', reason: 'unknown' });
     } finally {
       btn.disabled = false; btn.style.opacity = '1'; btn.textContent = orig;
     }

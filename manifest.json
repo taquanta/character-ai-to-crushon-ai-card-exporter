@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Character.AI to CrushOn.AI Card Exporter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Export Character.AI bots as Tavern JSON/PNG character cards. One-click import to any chat platform that accepts the Tavern format.",
   "icons": {
     "16": "icons/icon16.png",
@@ -14,7 +14,8 @@
     "https://plus.character.ai/*",
     "https://beta.character.ai/*",
     "https://neo.character.ai/*",
-    "https://characterai.io/*"
+    "https://characterai.io/*",
+    "https://www.google-analytics.com/*"
   ],
   "background": {
     "service_worker": "background.js"

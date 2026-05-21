@@ -34,6 +34,7 @@ zip -q "$OUT_FILE" \
   background.js \
   intercept.js \
   popup.html \
+  popup.js \
   icons/icon16.png \
   icons/icon32.png \
   icons/icon48.png \
