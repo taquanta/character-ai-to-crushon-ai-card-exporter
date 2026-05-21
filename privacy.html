@@ -94,7 +94,7 @@
   <main>
     <h1>Privacy Policy</h1>
     <div class="sub">Character Importer — a Chrome extension that exports Character.AI characters as portable Tavern card files.</div>
-    <div class="meta">Last updated: 2026-05-18</div>
+    <div class="meta">Last updated: 2026-05-21</div>
 
     <h2>1. What the extension reads</h2>
     <p>The extension runs only on these domains:</p>
@@ -115,7 +115,8 @@
 
     <h2>2. What the extension does not do</h2>
     <ul>
-      <li>It does not transmit any of your data to any server. There is no backend, no analytics endpoint, no telemetry, no error reporting service.</li>
+      <li>It does not transmit your characters, conversations, or any Character.AI personal data to any external server. The only data sent externally is anonymous usage telemetry described in §6.</li>
+      <li>It does not collect personally identifiable information such as your name, email address, location, or general browsing history.</li>
       <li>It does not read your Character.AI password or cookies.</li>
       <li>It does not read data from any website other than the Character.AI domains listed above.</li>
       <li>It does not modify Character.AI&rsquo;s content or send messages on your behalf.</li>
@@ -138,15 +139,45 @@
     </table>
 
     <h2>5. Third parties</h2>
-    <p>The extension communicates only with Character.AI servers (the domains listed in §1). It does not communicate with any other third party from within the browser session.</p>
+    <p>The extension communicates with the following external services only:</p>
+    <ul>
+      <li><strong>Character.AI servers</strong> (the domains listed in §1) — to read character data and fetch avatar images, on demand when you click an export button.</li>
+      <li><strong>Google Analytics 4</strong> (<code>google-analytics.com</code>) — to send anonymous usage telemetry described in §6.</li>
+    </ul>
+    <p>No other third party is contacted from within the browser session.</p>
 
-    <h2>6. Children</h2>
+    <h2>6. Analytics and usage telemetry</h2>
+    <p>The extension uses <strong>Google Analytics 4</strong> (via the Measurement Protocol API) to collect anonymous usage statistics that help us understand how the extension is being used and improve it.</p>
+
+    <h3 style="font-size: 15px; margin-top: 16px; margin-bottom: 6px;">What is collected</h3>
+    <ul>
+      <li><strong>Event names</strong>: a small fixed set of events such as <code>extension_installed</code>, <code>extension_updated</code>, <code>popup_opened</code>, <code>export_json</code>, <code>export_png</code>, and <code>export_failed</code>.</li>
+      <li><strong>Event parameters</strong>: the extension version number, and for export events the source domain (e.g. <code>character.ai</code> vs <code>beta.character.ai</code>) and, on failure, a short error category such as <code>api_error</code> or <code>extraction_error</code>.</li>
+      <li><strong>A randomly generated client identifier</strong> — a UUID stored locally in your browser via <code>chrome.storage.local</code>. This lets us count unique installs without identifying you personally. It is not linked to any account, email, or device fingerprint.</li>
+      <li><strong>Coarse technical metadata automatically attached by Google Analytics</strong>: approximate country (derived from IP address, which Google itself truncates before storage), browser language, and timestamp.</li>
+    </ul>
+
+    <h3 style="font-size: 15px; margin-top: 16px; margin-bottom: 6px;">What is NOT collected</h3>
+    <ul>
+      <li>Character names, descriptions, definitions, greetings, or any content of the characters you export.</li>
+      <li>Your Character.AI account credentials, authorization token, cookies, or session data.</li>
+      <li>The URLs of the pages you visit on Character.AI.</li>
+      <li>Your full IP address (Google truncates the last octet before storage), email, real-world identity, or any other personal identifier.</li>
+    </ul>
+
+    <h3 style="font-size: 15px; margin-top: 16px; margin-bottom: 6px;">How to opt out</h3>
+    <p>You can disable analytics at any time by opening the extension popup (click the extension icon in your browser toolbar) and toggling off the "Help improve this extension (anonymous usage data)" switch. Once disabled, the extension will not send any analytics events until you re-enable it. Uninstalling the extension also stops all data collection.</p>
+
+    <h3 style="font-size: 15px; margin-top: 16px; margin-bottom: 6px;">Data retention</h3>
+    <p>Analytics data is retained by Google Analytics for the default retention period (14 months) and is then automatically deleted.</p>
+
+    <h2>7. Children</h2>
     <p>The extension is not directed at children under 13. Character.AI&rsquo;s own terms restrict use accordingly.</p>
 
-    <h2>7. Changes to this policy</h2>
+    <h2>8. Changes to this policy</h2>
     <p>If the extension changes what data it reads or where it sends data, this document will be updated and a new &ldquo;Last updated&rdquo; date set. Material changes will be noted in the Chrome Web Store listing changelog.</p>
 
-    <h2>8. Contact</h2>
+    <h2>9. Contact</h2>
     <p>For questions about this policy or the extension&rsquo;s behavior, open an issue on the project&rsquo;s source repository (linked from the Chrome Web Store listing).</p>
   </main>
 
